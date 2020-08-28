@@ -1,5 +1,6 @@
 package by.epam.learn.function;
 
+import by.epam.learn.entity.Order;
 import by.epam.learn.function.impl.ServiceImpl;
 import by.epam.learn.function.supplier.ArrayFactory;
 
@@ -161,5 +162,16 @@ public class ServiceMain {
                 .sorted(Comparator.comparing(String::length)
                         .thenComparing(String::compareTo))
                 .forEach(s -> System.out.printf("%s ", s));
+    }
+
+    public static void ссылкиНаМетоды() {
+        Function<Order, Long> function = o -> o.getOrderId();
+        function = Order::getOrderId;
+
+        Consumer<String> consumer = s -> System.out.println(s);
+        consumer = System.out::println;
+
+        BiFunction<Double, Double, Double> biFunction = Math::hypot;
+        biFunction = (x, y) -> Math.hypot(x, y);
     }
 }
