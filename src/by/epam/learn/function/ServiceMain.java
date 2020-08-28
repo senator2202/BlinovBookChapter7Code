@@ -4,6 +4,7 @@ import by.epam.learn.function.impl.ServiceImpl;
 import by.epam.learn.function.supplier.ArrayFactory;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.*;
 import java.util.stream.Collectors;
 
@@ -145,5 +146,20 @@ public class ServiceMain {
         int[] arr = supplier2.get();
 
         int[] array = ArrayFactory.buildArray(10).get();
+    }
+
+    public static void интерфейсComparator() {
+        Comparator<String> comparator = (s1, s2) -> s2.length() - s1.length();
+
+        String str = "and java course epam the rose lion wolf hero green white red white";
+        Arrays.stream(str.split("\\s"))
+                .sorted(comparator)
+                .forEach(s -> System.out.printf("%s ", s));
+
+        String str1 = "and java course epam the rose lion wolf hero green white red white";
+        Arrays.stream(str.split("\\s"))
+                .sorted(Comparator.comparing(String::length)
+                        .thenComparing(String::compareTo))
+                .forEach(s -> System.out.printf("%s ", s));
     }
 }
